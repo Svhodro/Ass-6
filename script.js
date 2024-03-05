@@ -8,7 +8,7 @@ let fatchData;
 
 //
 let count = 0;
-
+let a=0;
 
 
 
@@ -139,67 +139,106 @@ searchBtn.addEventListener('click', async (all, valu) => {
 
 
   fatch.posts.forEach(item => {
-    if (item.category === searchValue.value) {
+    let value=(String(searchValue.value))
+    let catagory=(String(item.category))
+    if ( value.toLowerCase()===catagory.toLowerCase()) {
 
 
 
       const div = document.createElement('div');
+      
       div.innerHTML = `
-<div class="cerd flex gap-8 bg-slate-200 h-72 rounded-lg p-4">
-<div class="avtar ">
-  <div class="avatar w-20">
-
-    <div class="w-24 rounded-xl">
-      <img src="${item.image}" />
-    </div>
-    <div class="badge badge-success badge-sm ${item.isActive ? 'bg-green-500' : 'bg-red-500'} absolute right-[-5px] top-[-5px]"></div>
-  </div>
-</div>
-<div class="Contents flex flex-col gap-6">
-  <div class="headers flex gap-6 font-bold">
-    <p># ${item.category}</p>
-    <p>Author : ${item.author.name}</p>
-  </div>
-  <p class="font-bold text-xl">${item.title}</p>
-  <p>It's one thing to subject yourself to ha Halloween costume mishap because, <br>
-    hey that's your prerogative</p>
-  <hr class="border-dashed bg-slate-500 ">
-  <div class="flex  justify-between text-slate-500">
-    <div class="flex gap-3">
-      <p>
-        <span> <i class="fa-regular fa-message"></i> </span>
-        <span> ${item.comment_count}</span>
-      </p>
-      <p>
-        <span> <i class="fa-regular fa-eye"></i></span>
-        <span> ${item.view_count}</span>
-      </p>
-      <p>
-        <span> <i class="fa-regular fa-clock"></i></span>
-        <span>${item.posted_time}</span>
-      </p>
-    </div>
-    <div class="tab">
-      <button class="btn btn-circle btn-success " >
-        <i class="fa-solid fa-envelope-open "></i>
-      </button>
-    </div>
-
-
-
-  </div>
-
-</div>
-</div>
-`
+      <div class="cerd flex lg:flex-row flex-col gap-8 bg-slate-200 lg:h-72 rounded-lg p-2">
+      <div class="avtar ">
+        <div class="avatar lg:w-20">
+      
+          <div class="w-24 rounded-xl">
+            <img src="${item.image}" />
+          </div>
+          <div class="badge badge-success badge-sm ${item.isActive ? 'bg-green-500' : 'bg-red-500'} absolute right-[-5px] top-[-5px]"></div>
+        </div>
+      </div>
+      <div class="Contents flex flex-col gap-4">
+        <div class="headers flex gap-4 font-bold">
+          <p># ${item.category}</p>
+          <p>Author : ${item.author.name}</p>
+        </div>
+        <p class="font-bold text-xl ${count}">${item.title}</p>
+        <p>It's one thing to subject yourself to ha Halloween costume mishap because, <br>
+          hey that's your prerogative</p>
+        <hr class="border-dashed bg-slate-500 ">
+        <div class="flex  justify-between text-slate-500">
+          <div class="flex gap-3">
+            <p>
+              <span> <i class="fa-regular fa-message"></i> </span>
+              <span> ${item.comment_count}</span>
+            </p>
+            <p>
+              <span> <i class="fa-regular fa-eye"></i></span>
+              <span class="${count}" > ${item.view_count}</span>
+            </p>
+            <p>
+              <span> <i class="fa-regular fa-clock"></i></span>
+              <span>${item.posted_time}</span>
+            </p>
+          </div>
+          <div class="tab ${count} ">
+            <button class="btn btn-circle btn-success " >
+              <i class="fa-solid fa-envelope-open "></i>
+            </button>
+          </div>
+      
+      
+      
+        </div>
+      
+      </div>
+      </div>
+      `
       allSearch.appendChild(div)
+
+      
+      
 
     }
   })
-
+  setTimeout(() => {
+    let btn = document.querySelectorAll(".tab")
+    // console.log(btn);
+   
+    btn.forEach(item => {
+      item.addEventListener('click', () => {
+        let id = item.classList[1]
+        let dataArray = document.getElementsByClassName(`${id}`)
+        let title = dataArray[0].innerHTML;
+        let see = dataArray[1].innerHTML;
+        let div = document.createElement('div');
+        div.innerHTML = `
+          <div class="flex gap-3 bg-slate-50 rounded-lg p-3">
+                <div class="font-bold">
+                  <p>${title}</p>
+                </div>
+                <div>
+                  <p class="flex text-center gap-2"><i class="fa-regular fa-eye m-1"></i> <span>${see}</span></p>
+    
+                </div>
+    
+              </div>
+          `
+        cont.appendChild(div);
+        a++;
+        let change=document.querySelector(".row");
+        change.innerHTML=a;
+      })
+    })
+  
+  }, 2000)
 
 });
-let a=0;
+
+
+
+
 setTimeout(() => {
   let btn = document.querySelectorAll(".tab")
   // console.log(btn);
@@ -230,7 +269,7 @@ setTimeout(() => {
     })
   })
 
-}, 2000)
+}, 2000);
 
 
 
