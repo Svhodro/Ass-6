@@ -24,7 +24,7 @@ async function datafatch(all, valu) {
   data.posts.forEach(item => {
     const div = document.createElement('div');
     div.innerHTML = `
-<div class="cerd flex lg:flex-row flex-col gap-8 bg-slate-200 lg:h-72 rounded-lg p-4">
+<div class="cerd flex lg:flex-row flex-col gap-8 bg-slate-200 lg:h-72 rounded-lg p-2">
 <div class="avtar ">
   <div class="avatar lg:w-20">
 
@@ -34,8 +34,8 @@ async function datafatch(all, valu) {
     <div class="badge badge-success badge-sm ${item.isActive ? 'bg-green-500' : 'bg-red-500'} absolute right-[-5px] top-[-5px]"></div>
   </div>
 </div>
-<div class="Contents flex flex-col gap-6">
-  <div class="headers flex gap-6 font-bold">
+<div class="Contents flex flex-col gap-4">
+  <div class="headers flex gap-4 font-bold">
     <p># ${item.category}</p>
     <p>Author : ${item.author.name}</p>
   </div>
@@ -58,7 +58,7 @@ async function datafatch(all, valu) {
         <span>${item.posted_time}</span>
       </p>
     </div>
-    <div class="tab ${count}">
+    <div class="tab ${count} ">
       <button class="btn btn-circle btn-success " >
         <i class="fa-solid fa-envelope-open "></i>
       </button>
@@ -92,7 +92,8 @@ const latestPost = async () => {
 
   data.forEach(item => {
 
-    const div = document.createElement('div');    
+    const div = document.createElement('div');
+   
     div.innerHTML = `<div class="card  bg-base-300 shadow-xl">
           <figure class="p-4"><img src="${item.cover_image}" alt="Shoes" /></figure>
           <div class="card-body">
